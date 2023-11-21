@@ -2,7 +2,7 @@
 
 This project is a fork of the [TMA solidjs template](https://github.com/Telegram-Mini-Apps/solidjs-template) which can be used to start developing on Telegram Mini Apps using Solid JS, Bun & Tailwind.
 
-View demo deployment live on Telegram [here](https://t.me/tmajsbot/solid_example).
+View demo deployment live on Telegram [here](https://t.me/tmasolidjsbot/tma_solid_bun).
 
 ## Installation
 
