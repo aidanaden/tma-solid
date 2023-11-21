@@ -30,7 +30,13 @@ export function ThemeParamsPage() {
   };
 
   return (
-    <div class="p-3">
+    <div
+      class="p-3"
+      style={{
+        background: "var(--tg-theme-secondary-bg-color, white)",
+        color: "var(--tg-theme-text-color, black)",
+      }}
+    >
       <Link
         class="pb-3 block"
         href="/init-data"
