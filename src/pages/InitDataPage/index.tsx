@@ -4,6 +4,7 @@ import type { Chat, User } from "@tma.js/init-data";
 
 import { Link } from "../../components/Link";
 import { DisplayData, type Line } from "../../components/DisplayData";
+import { PageLayout } from "../../components/PageLayout";
 
 function getUserLines(user: User): Line[] {
   const {
@@ -47,7 +48,7 @@ export function InitDataPage() {
   };
 
   return (
-    <div class="p-3">
+    <PageLayout>
       <Link class="pb-3 block" href="/theme-params">
         To theme parameters
       </Link>
@@ -94,6 +95,6 @@ export function InitDataPage() {
           }}
         </Match>
       </Switch>
-    </div>
+    </PageLayout>
   );
 }

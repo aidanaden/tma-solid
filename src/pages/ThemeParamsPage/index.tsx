@@ -3,6 +3,7 @@ import { useNavigate } from "@solidjs/router";
 
 import { Link } from "../../components/Link";
 import { DisplayData, Line } from "../../components/DisplayData";
+import { PageLayout } from "../../components/PageLayout";
 
 export function ThemeParamsPage() {
   const { themeParams } = useSDK();
@@ -30,13 +31,7 @@ export function ThemeParamsPage() {
   };
 
   return (
-    <div
-      class="p-3"
-      style={{
-        background: "var(--tg-theme-secondary-bg-color, white)",
-        color: "var(--tg-theme-text-color, black)",
-      }}
-    >
+    <PageLayout>
       <Link
         class="pb-3 block"
         href="/init-data"
@@ -48,6 +43,6 @@ export function ThemeParamsPage() {
         Go back
       </Link>
       <DisplayData title="Theme Params" lines={lines()} />
-    </div>
+    </PageLayout>
   );
 }
