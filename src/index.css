@@ -2,25 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  background: var(--tg-theme-secondary-bg-color, white);
-  color: var(--tg-theme-text-color, black);
+/* Register our custom font family and tell the browser where to find it. */
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF Pro Rounded Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-blockquote {
-  margin: 0;
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF Pro Rounded Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Rounded";
+  src: url("/fonts/SF Pro Rounded Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  @apply font-sf font-medium antialiased
+  /*
+  background: var(--tg-theme-secondary-bg-color, white);
+  color: var(--tg-theme-text-color, black); */
 }
 
 blockquote p {
-  padding: 15px;
-  background: #eee;
-  border-radius: 5px;
+  @apply p-4 bg-[#eee] rounded-md
 }
 
 pre {
