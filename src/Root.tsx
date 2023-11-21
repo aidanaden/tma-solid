@@ -1,5 +1,6 @@
 import { createMemo, Switch, Match, type ParentProps } from "solid-js";
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
+
 import { App } from "./App";
 
 /**

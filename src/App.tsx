@@ -1,15 +1,9 @@
-import {
-  Routes,
-  Route,
-  Navigate,
-  Router,
-} from '@solidjs/router';
-import { createIntegration } from '@tma.js/solid-router-integration';
+import { Routes, Route, Navigate, Router } from "@solidjs/router";
+import { createIntegration } from "@tma.js/solid-router-integration";
 
-import { InitDataPage } from './pages/InitDataPage';
-import { ThemeParamsPage } from './pages/ThemeParamsPage';
-
-import { createNavigator } from './createNavigator';
+import { InitDataPage } from "./pages/InitDataPage";
+import { ThemeParamsPage } from "./pages/ThemeParamsPage";
+import { createNavigator } from "./createNavigator";
 
 export function App() {
   // We should create navigator to pass it to integration creation.
@@ -22,9 +16,9 @@ export function App() {
   return (
     <Router source={createIntegration(() => navigator)}>
       <Routes>
-        <Route path={'/init-data'} component={InitDataPage}/>
-        <Route path={'/theme-params'} component={ThemeParamsPage}/>
-        <Route path={'*'} element={<Navigate href={'/init-data'}/>}/>
+        <Route path={"/init-data"} component={InitDataPage} />
+        <Route path={"/theme-params"} component={ThemeParamsPage} />
+        <Route path={"*"} element={<Navigate href={"/init-data"} />} />
       </Routes>
     </Router>
   );
