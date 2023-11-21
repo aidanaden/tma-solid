@@ -8,6 +8,10 @@ module.exports = {
       fontFamily: {
         sf: ["SF Pro Rounded", ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        "text-primary": "var(--tg-theme-text-color, black)",
+        "bg-secondary": "var(--tg-theme-secondary-bg-color, white)",
+      },
     },
   },
   plugins: [],

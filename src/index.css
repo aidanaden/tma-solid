@@ -28,9 +28,9 @@
 }
 
 body {
-  background: var(--tg-theme-secondary-bg-color, white);
-  color: var(--tg-theme-text-color, black);
-  @apply font-sf font-medium antialiased
+  /* background: var(--tg-theme-secondary-bg-color, white);
+  color: var(--tg-theme-text-color, black); */
+  @apply font-sf font-medium antialiased text-text-primary bg-bg-secondary
 }
 
 blockquote p {
