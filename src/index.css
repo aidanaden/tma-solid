@@ -28,10 +28,9 @@
 }
 
 body {
-  @apply font-sf font-medium antialiased
-  /*
   background: var(--tg-theme-secondary-bg-color, white);
-  color: var(--tg-theme-text-color, black); */
+  color: var(--tg-theme-text-color, black);
+  @apply font-sf font-medium antialiased
 }
 
 blockquote p {
