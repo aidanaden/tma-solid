@@ -27,13 +27,8 @@
   font-display: swap;
 }
 
-:root {
-  background: var(--tg-theme-secondary-bg-color, white);
-  color: var(--tg-theme-text-color, black);
-}
-
 html {
-  @apply font-sf font-medium antialiased text-text-primary bg-bg-secondary
+  @apply font-sf font-medium antialiased text-slate-800 bg-slate-100
 }
 
 blockquote p {
