@@ -41,11 +41,7 @@ function DataLine(props: DataLineProps) {
           {(lines) => <DisplayData title={props.title} lines={lines()} />}
         </Match>
         <Match when={true}>
-          <div class="font-bold pb-1 text-xl">{props.title}</div>
-          {/* .lineValue {
-            white-space: normal;
-            word-break: break-word;
-          } */}
+          <div class="font-bold pb-1 text-lg">{props.title}</div>
           <div class="whitespace-normal break-words">
             <code>
               <Switch fallback={<i>No data</i>}>
