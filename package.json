@@ -33,6 +33,7 @@
     "@tma.js/sdk": "^0.13.3",
     "@tma.js/sdk-solid": "^0.1.20",
     "@tma.js/solid-router-integration": "^0.0.6",
-    "solid-js": "^1.8.5"
+    "solid-js": "^1.8.5",
+    "valibot": "^0.21.0"
   }
 }

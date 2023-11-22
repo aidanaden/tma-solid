@@ -1,61 +1,50 @@
-import { Match, Switch } from "solid-js";
-import { useSDK } from "@tma.js/sdk-solid";
-import type { Chat, User } from "@tma.js/init-data";
+import { Link } from "@solidjs/router";
+import { Switch, Match, createResource, Suspense, For, Show } from "solid-js";
+import {
+  object,
+  string,
+  number,
+  nullable,
+  array,
+  parse,
+  type Input,
+} from "valibot";
 
-import { Link } from "../../components/Link";
-import { DisplayData, type Line } from "../../components/DisplayData";
+import { Line, DisplayData } from "../../components/DisplayData";
 import { PageLayout } from "../../components/PageLayout";
 
-function getUserLines(user: User): Line[] {
-  const {
-    id,
-    isBot,
-    isPremium,
-    languageCode = null,
-    lastName = null,
-    firstName,
-  } = user;
+const ListPokemonSchema = object({
+  name: string(),
+  url: string(),
+});
+const PokemonsResultSchema = object({
+  count: number(),
+  next: string(),
+  previous: nullable(string()),
+  results: array(ListPokemonSchema),
+});
+type PokemonsResult = Input<typeof PokemonsResultSchema>;
 
-  return [
-    ["ID", id.toString()],
-    ["Last name", lastName],
-    ["First name", firstName],
-    ["Is bot", isBot ? "yes" : "no"],
-    ["Is premium", isPremium ? "yes" : "no"],
-    ["Language code", languageCode],
-  ];
-}
-
-function getChatLines(chat: Chat): Line[] {
-  const { id, title, type, username = null, photoUrl = null } = chat;
-
-  return [
-    ["ID", id.toString()],
-    ["Title", title],
-    ["Type", type],
-    ["Username", username],
-    ["Photo URL", photoUrl],
-  ];
-}
-
-export function InitDataPage() {
-  const { initData, initDataRaw } = useSDK();
-  const whenWithData = () => {
-    const typed = initData();
-    const raw = initDataRaw();
-
-    return typed && raw ? { typed, raw } : false;
-  };
+export function PokemonsPage() {
+  const [pokemons] = createResource<PokemonsResult["results"]>(async () => {
+    const res = await fetch("https://pokeapi.co/api/v2/pokemon");
+    const jsoned = await res.json();
+    return parse(PokemonsResultSchema, jsoned).results;
+  });
 
   return (
     <PageLayout>
       <Link class="pb-3 block" href="/theme-params">
         To theme parameters
       </Link>
-      <Link class="pb-3 block" href="/pokemons">
-        To pokemons
-      </Link>
-      <Switch
+      <Suspense>
+        <Show when={pokemons()}>
+          {(pokes) => (
+            <For each={pokes()}>{(poke) => <div>{poke.name}</div>}</For>
+          )}
+        </Show>
+      </Suspense>
+      {/* <Switch
         fallback={
           "Current launch parameters don't contain init data information."
         }
@@ -97,7 +86,7 @@ export function InitDataPage() {
             return <DisplayData title="Init data" lines={lines()} />;
           }}
         </Match>
-      </Switch>
+      </Switch> */}
     </PageLayout>
   );
 }
