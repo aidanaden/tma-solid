@@ -66,7 +66,7 @@ const MAX_POKEMONS = 1292;
 export function PokemonsPage() {
   // const navigate = useNavigate();
   const [currentPage, setCurrentPage] = createSignal(0);
-  const [fetchedPokemons] = createResource<PokemonDetail[], number>(
+  const [fetchedPokemons] = createResource<PokemonsResult["results"], number>(
     currentPage,
     async (page) => {
       const res = await fetch(
@@ -76,13 +76,13 @@ export function PokemonsPage() {
       );
       const jsoned = await res.json();
       const parsed = parse(PokemonsResultSchema, jsoned).results;
-      const promises = parsed.map(async (p) => {
-        const r = await fetch(p.url);
-        const j = await r.json();
-        return parse(PokemonDetailSchema, j);
-      });
-      const results = await Promise.all(promises);
-      return results;
+      // const promises = parsed.map(async (p) => {
+      //   const r = await fetch(p.url);
+      //   const j = await r.json();
+      //   return parse(PokemonDetailSchema, j);
+      // });
+      // const results = await Promise.all(promises);
+      return parsed;
     }
   );
 
