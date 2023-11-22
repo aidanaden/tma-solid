@@ -34,14 +34,14 @@ const PokemonsResultSchema = object({
 type PokemonsResult = Input<typeof PokemonsResultSchema>;
 
 const PokemonSpritesSchema = object({
-  front_default: string(),
-  front_shiny: string(),
-  front_female: string(),
-  front_shiny_female: string(),
-  back_default: string(),
-  back_shiny: string(),
-  back_female: string(),
-  back_shiny_female: string(),
+  front_default: nullable(string()),
+  front_shiny: nullable(string()),
+  front_female: nullable(string()),
+  front_shiny_female: nullable(string()),
+  back_default: nullable(string()),
+  back_shiny: nullable(string()),
+  back_female: nullable(string()),
+  back_shiny_female: nullable(string()),
 });
 const PokemonTypeSchema = object({
   slot: number(),
@@ -55,7 +55,7 @@ const PokemonDetailSchema = object({
   id: number(),
   name: string(),
   height: number(),
-  // sprites: PokemonSpritesSchema,
+  sprites: PokemonSpritesSchema,
   types: array(PokemonTypeSchema),
 });
 
@@ -105,6 +105,10 @@ export function PokemonsPage() {
             <For each={pokes()}>
               {(poke) => (
                 <div>
+                  <img
+                    class="h-6 aspect-square"
+                    src={poke.sprites.back_default ?? undefined}
+                  />
                   <div>{poke.name}</div>
                   <div> {poke.height}</div>
                   <div class="flex gap-1.5">
