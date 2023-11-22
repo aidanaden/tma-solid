@@ -65,7 +65,7 @@ const PER_PAGE = 30;
 const MAX_POKEMONS = 1292;
 
 export function PokemonsPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = createSignal(0);
   const [fetchedPokemons] = createResource<PokemonDetail[], number>(
     currentPage,
@@ -87,19 +87,6 @@ export function PokemonsPage() {
     }
   );
 
-  // createEffect(() => {
-  //   alert(
-  //     JSON.stringify({
-  //       page: currentPage(),
-  //       fetched: fetchedPokemons(),
-  //     })
-  //   );
-  //   console.log({
-  //     page: currentPage(),
-  //     fetched: fetchedPokemons(),
-  //   });
-  // });
-
   return (
     <PageLayout>
       <Link
@@ -107,13 +94,12 @@ export function PokemonsPage() {
         href="/init-data"
         onClick={(e) => {
           e.preventDefault();
-          // navigate(-1);
+          navigate(-1);
         }}
       >
         Go back
       </Link>
       <Suspense>
-        {/* <For each={fetchedPokemons()}>{(poke) => <div>{poke.name}</div>}</For> */}
         <Show when={fetchedPokemons()}>
           {(pokes) => (
             <For each={pokes()}>
@@ -121,6 +107,13 @@ export function PokemonsPage() {
                 <div>
                   <div>{poke.name}</div>
                   <div> {poke.height}</div>
+                  <div class="flex gap-1.5">
+                    <For each={poke.types}>
+                      {(info) => (
+                        <span class="inline-block">{info.type.name}</span>
+                      )}
+                    </For>
+                  </div>
                 </div>
               )}
             </For>
