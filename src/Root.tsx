@@ -2,6 +2,7 @@ import { createMemo, Switch, Match, type ParentProps } from "solid-js";
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
 
 import { App } from "./App";
+import { PokemonsPage } from "./pages/PokemonsPage";
 
 /**
  * Component which is responsible for controlling SDK init process.
@@ -21,7 +22,8 @@ function DisplayGate(props: ParentProps) {
   return (
     <Switch fallback={props.children}>
       <Match when={errorMessage()}>
-        <div
+        <PokemonsPage />
+        {/* <div
           class="max-w-7xl px-3 mx-auto flex flex-col gap-2.5
           items-center justify-center h-screen"
         >
@@ -32,7 +34,7 @@ function DisplayGate(props: ParentProps) {
           <blockquote>
             <p class="py-3 px-4">{errorMessage()}</p>
           </blockquote>
-        </div>
+        </div> */}
       </Match>
       <Match when={loading()}>
         <div>Loading..</div>

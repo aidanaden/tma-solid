@@ -103,6 +103,7 @@ export function PokemonsPage() {
         return parse(PokemonDetailSchema, r);
       });
       const results = await Promise.all(promises);
+      setPokemons([...pokemons, ...results]);
       return results;
     }
   );
