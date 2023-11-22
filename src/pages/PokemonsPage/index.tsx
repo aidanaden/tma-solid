@@ -6,6 +6,7 @@ import {
   Show,
   createSignal,
   createMemo,
+  createEffect,
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import {
@@ -107,6 +108,15 @@ export function PokemonsPage() {
       return results;
     }
   );
+
+  createEffect(() => {
+    console.log({
+      stored: pokemons,
+      page: currentPage(),
+      pagePokes: pagePokemons(),
+      fetched: fetchedPokemons(),
+    });
+  });
 
   return (
     <PageLayout>
