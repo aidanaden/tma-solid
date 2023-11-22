@@ -87,18 +87,18 @@ export function PokemonsPage() {
     }
   );
 
-  createEffect(() => {
-    alert(
-      JSON.stringify({
-        page: currentPage(),
-        fetched: fetchedPokemons(),
-      })
-    );
-    console.log({
-      page: currentPage(),
-      fetched: fetchedPokemons(),
-    });
-  });
+  // createEffect(() => {
+  //   alert(
+  //     JSON.stringify({
+  //       page: currentPage(),
+  //       fetched: fetchedPokemons(),
+  //     })
+  //   );
+  //   console.log({
+  //     page: currentPage(),
+  //     fetched: fetchedPokemons(),
+  //   });
+  // });
 
   return (
     <PageLayout>
@@ -116,7 +116,14 @@ export function PokemonsPage() {
         {/* <For each={fetchedPokemons()}>{(poke) => <div>{poke.name}</div>}</For> */}
         <Show when={fetchedPokemons()}>
           {(pokes) => (
-            <For each={pokes()}>{(poke) => <div>{poke.name}</div>}</For>
+            <For each={pokes()}>
+              {(poke) => (
+                <div>
+                  <div>{poke.name}</div>
+                  <div> {poke.height}</div>
+                </div>
+              )}
+            </For>
           )}
         </Show>
       </Suspense>
