@@ -52,6 +52,9 @@ export function InitDataPage() {
       <Link class="pb-3 block" href="/theme-params">
         To theme parameters
       </Link>
+      <Link class="pb-3 block" href="/pokemons">
+        To pokemons
+      </Link>
       <Switch
         fallback={
           "Current launch parameters don't contain init data information."
