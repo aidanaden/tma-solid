@@ -106,7 +106,7 @@ export function PokemonsPage() {
               {(poke) => (
                 <div>
                   <img
-                    class="h-6 aspect-square"
+                    class="h-12 aspect-square"
                     src={poke.sprites.back_default ?? undefined}
                   />
                   <div>{poke.name}</div>
