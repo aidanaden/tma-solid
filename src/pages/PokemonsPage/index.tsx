@@ -110,6 +110,14 @@ export function PokemonsPage() {
   );
 
   createEffect(() => {
+    alert(
+      JSON.stringify({
+        stored: pokemons,
+        page: currentPage(),
+        pagePokes: pagePokemons(),
+        fetched: fetchedPokemons(),
+      })
+    );
     console.log({
       stored: pokemons,
       page: currentPage(),

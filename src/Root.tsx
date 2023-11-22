@@ -22,8 +22,7 @@ function DisplayGate(props: ParentProps) {
   return (
     <Switch fallback={props.children}>
       <Match when={errorMessage()}>
-        <PokemonsPage />
-        {/* <div
+        <div
           class="max-w-7xl px-3 mx-auto flex flex-col gap-2.5
           items-center justify-center h-screen"
         >
@@ -34,11 +33,10 @@ function DisplayGate(props: ParentProps) {
           <blockquote>
             <p class="py-3 px-4">{errorMessage()}</p>
           </blockquote>
-        </div> */}
+        </div>
       </Match>
       <Match when={loading()}>
-        <PokemonsPage />
-        {/* <div>Loading..</div> */}
+        <div>Loading..</div>
       </Match>
     </Switch>
   );
