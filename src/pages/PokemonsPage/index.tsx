@@ -1,5 +1,13 @@
 import { Link, useNavigate } from "@solidjs/router";
-import { createResource, Suspense, For, Show } from "solid-js";
+import {
+  createResource,
+  Suspense,
+  For,
+  Show,
+  createSignal,
+  createMemo,
+} from "solid-js";
+import { createStore } from "solid-js/store";
 import {
   object,
   string,
@@ -24,13 +32,80 @@ const PokemonsResultSchema = object({
 });
 type PokemonsResult = Input<typeof PokemonsResultSchema>;
 
+const PokemonSpritesSchema = object({
+  front_default: string(),
+  front_shiny: string(),
+  front_female: string(),
+  front_shiny_female: string(),
+  back_default: string(),
+  back_shiny: string(),
+  back_female: string(),
+  back_shiny_female: string(),
+});
+const PokemonTypeSchema = object({
+  slot: number(),
+  type: object({
+    name: string(),
+    url: string(),
+  }),
+});
+
+const PokemonDetailSchema = object({
+  id: number(),
+  name: string(),
+  sprites: PokemonSpritesSchema,
+  types: array(PokemonTypeSchema),
+});
+
+type PokemonDetail = Input<typeof PokemonDetailSchema>;
+
+const PER_PAGE = 30;
+const MAX_POKEMONS = 1292;
+
 export function PokemonsPage() {
   const navigate = useNavigate();
-  const [pokemons] = createResource<PokemonsResult["results"]>(async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon");
-    const jsoned = await res.json();
-    return parse(PokemonsResultSchema, jsoned).results;
+  const [pokemons, setPokemons] = createStore<PokemonDetail[]>([]);
+  const [currentPage, setCurrentPage] = createSignal(0);
+  const pagePokemons = createMemo<PokemonDetail[]>(() => {
+    const page = currentPage();
+    const numPokemons = pokemons.length;
+    if ((page + 1) * PER_PAGE > numPokemons) {
+      // return remainding if all pokemons fetched
+      if (numPokemons === MAX_POKEMONS) {
+        const secondLastPage = page * PER_PAGE;
+        return pokemons.slice(secondLastPage - 1);
+      }
+      // return empty if current page of pokemons not fetched
+      return [];
+    }
+    return pokemons.slice(page * PER_PAGE);
   });
+  type FetchPokemonSource = [number, PokemonDetail[]];
+  const fetchSource = createMemo<FetchPokemonSource>(() => [
+    currentPage(),
+    pagePokemons(),
+  ]);
+  const [fetchedPokemons] = createResource<PokemonDetail[], FetchPokemonSource>(
+    fetchSource,
+    async ([page, pokes]) => {
+      if (pokes.length > 0) {
+        return pokes;
+      }
+      const res = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/?limit=${PER_PAGE}&offset=${
+          page * PER_PAGE
+        }`
+      );
+      const jsoned = await res.json();
+      const parsed = parse(PokemonsResultSchema, jsoned).results;
+      const promises = parsed.map(async (p) => {
+        const r = await fetch(p.url).then((r) => r.json());
+        return parse(PokemonDetailSchema, r);
+      });
+      const results = await Promise.all(promises);
+      return results;
+    }
+  );
 
   return (
     <PageLayout>
@@ -45,11 +120,12 @@ export function PokemonsPage() {
         Go back
       </Link>
       <Suspense>
-        <Show when={pokemons()}>
+        <For each={fetchedPokemons()}>{(poke) => <div>{poke.name}</div>}</For>
+        {/* <Show when={pokemons()}>
           {(pokes) => (
             <For each={pokes()}>{(poke) => <div>{poke.name}</div>}</For>
           )}
-        </Show>
+        </Show> */}
       </Suspense>
       {/* <Switch
         fallback={
