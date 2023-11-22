@@ -34,7 +34,7 @@ export function PokemonsPage() {
 
   return (
     <PageLayout>
-      <Link class="pb-3 block" href="/theme-params">
+      <Link class="pb-3 block" href="/init-data">
         To theme parameters
       </Link>
       <Suspense>
