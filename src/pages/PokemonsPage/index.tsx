@@ -120,12 +120,12 @@ export function PokemonsPage() {
         Go back
       </Link>
       <Suspense>
-        <For each={fetchedPokemons()}>{(poke) => <div>{poke.name}</div>}</For>
-        {/* <Show when={pokemons()}>
+        {/* <For each={fetchedPokemons()}>{(poke) => <div>{poke.name}</div>}</For> */}
+        <Show when={fetchedPokemons()}>
           {(pokes) => (
             <For each={pokes()}>{(poke) => <div>{poke.name}</div>}</For>
           )}
-        </Show> */}
+        </Show>
       </Suspense>
       {/* <Switch
         fallback={
