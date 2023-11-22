@@ -1,5 +1,5 @@
-import { Link } from "@solidjs/router";
-import { Switch, Match, createResource, Suspense, For, Show } from "solid-js";
+import { Link, useNavigate } from "@solidjs/router";
+import { createResource, Suspense, For, Show } from "solid-js";
 import {
   object,
   string,
@@ -10,7 +10,6 @@ import {
   type Input,
 } from "valibot";
 
-import { Line, DisplayData } from "../../components/DisplayData";
 import { PageLayout } from "../../components/PageLayout";
 
 const ListPokemonSchema = object({
@@ -26,6 +25,7 @@ const PokemonsResultSchema = object({
 type PokemonsResult = Input<typeof PokemonsResultSchema>;
 
 export function PokemonsPage() {
+  const navigate = useNavigate();
   const [pokemons] = createResource<PokemonsResult["results"]>(async () => {
     const res = await fetch("https://pokeapi.co/api/v2/pokemon");
     const jsoned = await res.json();
@@ -34,8 +34,15 @@ export function PokemonsPage() {
 
   return (
     <PageLayout>
-      <Link class="pb-3 block" href="/theme-params">
-        To theme parameters
+      <Link
+        class="pb-3 block"
+        href="/init-data"
+        onClick={(e) => {
+          e.preventDefault();
+          navigate(-1);
+        }}
+      >
+        Go back
       </Link>
       <Suspense>
         <Show when={pokemons()}>
