@@ -4,6 +4,7 @@ import { createIntegration } from "@tma.js/solid-router-integration";
 import { InitDataPage } from "./pages/InitDataPage";
 import { ThemeParamsPage } from "./pages/ThemeParamsPage";
 import { createNavigator } from "./createNavigator";
+import { PokemonsPage } from "./pages/PokemonsPage";
 
 export function App() {
   // We should create navigator to pass it to integration creation.
@@ -18,6 +19,7 @@ export function App() {
       <Routes>
         <Route path={"/init-data"} component={InitDataPage} />
         <Route path={"/theme-params"} component={ThemeParamsPage} />
+        <Route path={"/pokemons"} component={PokemonsPage} />
         <Route path={"*"} element={<Navigate href={"/init-data"} />} />
       </Routes>
     </Router>
