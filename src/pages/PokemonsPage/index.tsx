@@ -65,31 +65,13 @@ const MAX_POKEMONS = 1292;
 
 export function PokemonsPage() {
   // const navigate = useNavigate();
-  const [pokemons, setPokemons] = createStore<PokemonDetail[]>([]);
   const [currentPage, setCurrentPage] = createSignal(0);
-  const pagePokemons = createMemo<PokemonDetail[]>(() => {
-    const page = currentPage();
-    const numPokemons = pokemons.length;
-    if ((page + 1) * PER_PAGE > numPokemons) {
-      // return remainding if all pokemons fetched
-      if (numPokemons === MAX_POKEMONS) {
-        const secondLastPage = page * PER_PAGE;
-        return pokemons.slice(secondLastPage - 1);
-      }
-      // return empty if current page of pokemons not fetched
-      return [];
-    }
-    return pokemons.slice(page * PER_PAGE);
-  });
-  const [fetchedPokemons] = createResource<PokemonDetail[], PokemonDetail[]>(
-    pagePokemons,
-    async (pokes) => {
-      if (pokes.length > 0) {
-        return pokes;
-      }
+  const [fetchedPokemons] = createResource<PokemonDetail[], number>(
+    currentPage,
+    async (page) => {
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon/?limit=${PER_PAGE}&offset=${
-          currentPage() * PER_PAGE
+          page * PER_PAGE
         }`
       );
       const jsoned = await res.json();
@@ -99,7 +81,6 @@ export function PokemonsPage() {
         return parse(PokemonDetailSchema, r);
       });
       const results = await Promise.all(promises);
-      setPokemons([...pokemons, ...results]);
       return results;
     }
   );
@@ -107,16 +88,12 @@ export function PokemonsPage() {
   createEffect(() => {
     alert(
       JSON.stringify({
-        stored: pokemons,
         page: currentPage(),
-        pagePokes: pagePokemons(),
         fetched: fetchedPokemons(),
       })
     );
     console.log({
-      stored: pokemons,
       page: currentPage(),
-      pagePokes: pagePokemons(),
       fetched: fetchedPokemons(),
     });
   });
