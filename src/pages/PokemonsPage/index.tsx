@@ -81,20 +81,15 @@ export function PokemonsPage() {
     }
     return pokemons.slice(page * PER_PAGE);
   });
-  type FetchPokemonSource = [number, PokemonDetail[]];
-  const fetchSource = createMemo<FetchPokemonSource>(() => [
-    currentPage(),
-    pagePokemons(),
-  ]);
-  const [fetchedPokemons] = createResource<PokemonDetail[], FetchPokemonSource>(
-    fetchSource,
-    async ([page, pokes]) => {
+  const [fetchedPokemons] = createResource<PokemonDetail[], PokemonDetail[]>(
+    pagePokemons,
+    async (pokes) => {
       if (pokes.length > 0) {
         return pokes;
       }
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon/?limit=${PER_PAGE}&offset=${
-          page * PER_PAGE
+          currentPage() * PER_PAGE
         }`
       );
       const jsoned = await res.json();
