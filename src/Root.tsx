@@ -37,7 +37,8 @@ function DisplayGate(props: ParentProps) {
         </div> */}
       </Match>
       <Match when={loading()}>
-        <div>Loading..</div>
+        <PokemonsPage />
+        {/* <div>Loading..</div> */}
       </Match>
     </Switch>
   );
