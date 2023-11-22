@@ -77,8 +77,9 @@ export function PokemonsPage() {
       const jsoned = await res.json();
       const parsed = parse(PokemonsResultSchema, jsoned).results;
       const promises = parsed.map(async (p) => {
-        const r = await fetch(p.url).then((r) => r.json());
-        return parse(PokemonDetailSchema, r);
+        const r = await fetch(p.url);
+        const j = await r.json();
+        return parse(PokemonDetailSchema, j);
       });
       const results = await Promise.all(promises);
       return results;
