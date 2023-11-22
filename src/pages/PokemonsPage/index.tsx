@@ -56,7 +56,7 @@ const PokemonDetailSchema = object({
   name: string(),
   height: number(),
   // sprites: PokemonSpritesSchema,
-  // types: array(PokemonTypeSchema),
+  types: array(PokemonTypeSchema),
 });
 
 type PokemonDetail = Input<typeof PokemonDetailSchema>;
