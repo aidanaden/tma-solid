@@ -64,7 +64,7 @@ const PER_PAGE = 30;
 const MAX_POKEMONS = 1292;
 
 export function PokemonsPage() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [pokemons, setPokemons] = createStore<PokemonDetail[]>([]);
   const [currentPage, setCurrentPage] = createSignal(0);
   const pagePokemons = createMemo<PokemonDetail[]>(() => {
@@ -125,7 +125,7 @@ export function PokemonsPage() {
         href="/init-data"
         onClick={(e) => {
           e.preventDefault();
-          navigate(-1);
+          // navigate(-1);
         }}
       >
         Go back
