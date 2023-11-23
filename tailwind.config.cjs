@@ -11,13 +11,13 @@ module.exports = {
 
       colors: {
         tg: {
-          bg: "var(--tg-theme-bg-color)",
-          text: "var(--tg-theme-text-color)",
-          hint: "var(--tg-theme-hint-color)",
-          link: "var(--tg-theme-link-color)",
-          btn: "var(--tg-theme-button-color)",
-          "btn-text": "var(--tg-theme-button-text-color)",
-          "secondary-bg": "var(--tg-theme-secondary-bg-color)",
+          bg: "var(--telegram-bg-color)",
+          text: "var(--telegram-text-color)",
+          hint: "var(--telegram-hint-color)",
+          link: "var(--telegram-link-color)",
+          btn: "var(--telegram-button-color)",
+          "btn-text": "var(--telegram-button-text-color)",
+          "secondary-bg": "var(--telegram-secondary-bg-color)",
         },
       },
     },
