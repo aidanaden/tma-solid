@@ -46,10 +46,18 @@ function DisplayGate(props: ParentProps) {
  */
 export function Root() {
   return (
-    <SDKProvider initOptions={{ debug: true, cssVars: true, timeout: 1000 }}>
-      <DisplayGate>
+    <SDKProvider
+      initOptions={{
+        debug: true,
+        cssVars: true,
+        timeout: 1000,
+        checkCompat: true,
+      }}
+    >
+      <div>my app!</div>
+      {/* <DisplayGate>
         <App />
-      </DisplayGate>
+      </DisplayGate> */}
     </SDKProvider>
   );
 }
