@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@solidjs/router";
+import { useNavigate } from "@solidjs/router";
 import {
   createResource,
   Suspense,
@@ -20,6 +20,7 @@ import {
 } from "valibot";
 
 import { PageLayout } from "../../components/PageLayout";
+import { Link } from "../../components/Link";
 
 const ListPokemonSchema = object({
   name: string(),
