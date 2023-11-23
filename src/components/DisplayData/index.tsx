@@ -70,7 +70,7 @@ function DataLine(props: DataLineProps) {
 
 export function DisplayData(props: DisplayDataProps) {
   return (
-    <div class="text-base text-neutral-800">
+    <div class="text-base text-tg-text">
       <div class="font-bold text-3xl pb-3">{props.title}</div>
       <For each={props.lines}>
         {([title, value]) => <DataLine title={title} value={value} />}
