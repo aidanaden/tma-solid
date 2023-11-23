@@ -63,7 +63,7 @@
 }
 
 html {
-  @apply font-sf font-medium antialiased
+  @apply font-sf font-medium antialiased bg-tg-bg
 }
 
 blockquote p {
