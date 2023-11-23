@@ -25,15 +25,15 @@
   },
   "dependencies": {
     "@solid-primitives/pagination": "^0.2.9",
-    "@solidjs/router": "^0.9.1",
+    "@solidjs/router": "^0.8.3",
     "@tma.js/colors": "^0.0.5",
-    "@tma.js/init-data": "^0.2.22",
-    "@tma.js/launch-params": "^1.0.1",
-    "@tma.js/navigation": "^1.0.1",
-    "@tma.js/sdk": "^0.13.3",
-    "@tma.js/sdk-solid": "^0.1.20",
-    "@tma.js/solid-router-integration": "^0.0.6",
-    "solid-js": "^1.8.6",
+    "@tma.js/init-data": "^0.2.21",
+    "@tma.js/launch-params": "^1.0.0",
+    "@tma.js/navigation": "^1.0.0",
+    "@tma.js/sdk": "^0.13.2",
+    "@tma.js/sdk-solid": "^0.1.19",
+    "@tma.js/solid-router-integration": "^0.0.5",
+    "solid-js": "^1.7.6",
     "valibot": "^0.21.0"
   }
 }
