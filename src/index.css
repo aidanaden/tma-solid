@@ -56,7 +56,8 @@
     --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
     --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
 
-    background-color: var(--telegram-bg-color);
+    background: var(--telegram-bg-color);
+    color: var(--telegram-text-color);
   }
 }
 
