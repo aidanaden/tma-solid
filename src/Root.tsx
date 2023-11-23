@@ -48,9 +48,7 @@ export function Root() {
   return (
     <SDKProvider initOptions={{ debug: true, cssVars: true, timeout: 1000 }}>
       <DisplayGate>
-        <div class="bg-tg-bg">
-          <App />
-        </div>
+        <App />
       </DisplayGate>
     </SDKProvider>
   );
