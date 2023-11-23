@@ -57,13 +57,8 @@
     --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
   }
 
-  body {
-    background: var(--telegram-bg-color);
-    color: var(--telegram-text-color);
-  }
-
   html {
-    @apply font-sf font-medium antialiased bg-tg-bg
+    @apply font-sf font-medium antialiased
   }
   
   blockquote p {
