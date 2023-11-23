@@ -124,49 +124,6 @@ export function PokemonsPage() {
           )}
         </Show>
       </Suspense>
-      {/* <Switch
-        fallback={
-          "Current launch parameters don't contain init data information."
-        }
-      >
-        <Match when={whenWithData()}>
-          {(match) => {
-            const lines = (): Line[] => {
-              const {
-                authDate,
-                chat,
-                hash,
-                canSendAfter,
-                queryId,
-                receiver,
-                user,
-                startParam,
-                chatType,
-                chatInstance,
-              } = match().typed;
-
-              return [
-                ["Raw", match().raw],
-                ["Auth date", authDate.toLocaleString()],
-                ["Hash", hash],
-                [
-                  "Can send after",
-                  canSendAfter ? canSendAfter.toString() : null,
-                ],
-                ["Query id", queryId],
-                ["Start param", startParam],
-                ["Chat type", chatType],
-                ["Chat instance", chatInstance],
-                ["Receiver", receiver ? getUserLines(receiver) : null],
-                ["Chat", chat ? getChatLines(chat) : null],
-                ["User", user ? getUserLines(user) : null],
-              ];
-            };
-
-            return <DisplayData title="Init data" lines={lines()} />;
-          }}
-        </Match>
-      </Switch> */}
     </PageLayout>
   );
 }

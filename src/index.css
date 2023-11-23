@@ -27,6 +27,41 @@
   font-display: swap;
 }
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .prevent-select {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+}
+
+@layer base {
+  :root {
+    background-color: var(--tg-theme-bg-color);
+  }
+}
+
+@layer components {
+  .btn-tg-primary {
+    @apply bg-tg-btn hover:bg-tg-btn text-tg-btn-text;
+  }
+
+  .btn-tg-secondary {
+    @apply bg-tg-secondary-bg hover:bg-tg-secondary-bg text-tg-hint;
+  }
+}
+
 html {
   @apply font-sf font-medium antialiased text-slate-800 bg-slate-100
 }

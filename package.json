@@ -25,6 +25,7 @@
     "vite-plugin-solid": "^2.7.2"
   },
   "dependencies": {
+    "@solid-primitives/pagination": "^0.2.9",
     "@solidjs/router": "^0.9.1",
     "@tma.js/colors": "^0.0.5",
     "@tma.js/init-data": "^0.2.22",
