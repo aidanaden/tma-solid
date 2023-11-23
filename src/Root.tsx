@@ -54,10 +54,10 @@ export function Root() {
         checkCompat: true,
       }}
     >
-      <div>my app!</div>
-      {/* <DisplayGate>
-        <App />
-      </DisplayGate> */}
+      <DisplayGate>
+        {/* <App /> */}
+        <div>my app!</div>
+      </DisplayGate>
     </SDKProvider>
   );
 }
