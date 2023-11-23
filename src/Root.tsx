@@ -55,8 +55,7 @@ export function Root() {
       }}
     >
       <DisplayGate>
-        {/* <App /> */}
-        <div>my app!</div>
+        <App />
       </DisplayGate>
     </SDKProvider>
   );
