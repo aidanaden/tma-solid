@@ -55,9 +55,23 @@
     --telegram-button-color: var(--tg-theme-button-color, #3390ec);
     --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
     --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
+  }
 
+  body {
     background: var(--telegram-bg-color);
     color: var(--telegram-text-color);
+  }
+
+  html {
+    @apply font-sf font-medium antialiased bg-tg-bg
+  }
+  
+  blockquote p {
+    @apply p-4 bg-[#eee] rounded-md
+  }
+  
+  pre {
+    overflow: auto;
   }
 }
 
@@ -69,16 +83,4 @@
   .btn-tg-secondary {
     @apply bg-tg-secondary-bg hover:bg-tg-secondary-bg text-tg-hint;
   }
-}
-
-html {
-  @apply font-sf font-medium antialiased bg-tg-bg
-}
-
-blockquote p {
-  @apply p-4 bg-[#eee] rounded-md
-}
-
-pre {
-  overflow: auto;
 }
