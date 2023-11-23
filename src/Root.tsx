@@ -2,7 +2,6 @@ import { createMemo, Switch, Match, type ParentProps } from "solid-js";
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
 
 import { App } from "./App";
-import { PokemonsPage } from "./pages/PokemonsPage";
 
 /**
  * Component which is responsible for controlling SDK init process.
@@ -49,7 +48,9 @@ export function Root() {
   return (
     <SDKProvider initOptions={{ debug: true, cssVars: true, timeout: 1000 }}>
       <DisplayGate>
-        <App />
+        <div class="bg-tg-bg">
+          <App />
+        </div>
       </DisplayGate>
     </SDKProvider>
   );
