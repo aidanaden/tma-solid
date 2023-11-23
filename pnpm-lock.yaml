@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.2.9
     version: 0.2.9(solid-js@1.8.6)
   '@solidjs/router':
-    specifier: ^0.8.4
-    version: 0.8.4(solid-js@1.8.6)
+    specifier: ^0.9.1
+    version: 0.9.1(solid-js@1.8.6)
   '@tma.js/colors':
     specifier: ^0.0.5
     version: 0.0.5
@@ -31,7 +31,7 @@ dependencies:
     version: 0.1.20(solid-js@1.8.6)
   '@tma.js/solid-router-integration':
     specifier: ^0.0.5
-    version: 0.0.5(@solidjs/router@0.8.4)
+    version: 0.0.5(@solidjs/router@0.9.1)
   solid-js:
     specifier: ^1.8.6
     version: 1.8.6
@@ -725,10 +725,10 @@ packages:
       solid-js: 1.8.6
     dev: false
 
-  /@solidjs/router@0.8.4(solid-js@1.8.6):
-    resolution: {integrity: sha512-Gi/WVoVseGMKS1DBdT3pNAMgOzEOp6Q3dpgNd2mW9GUEnVocPmtyBjDvXwN6m7tjSGsqqfqJFXk7bm1hxabSRw==}
+  /@solidjs/router@0.9.1(solid-js@1.8.6):
+    resolution: {integrity: sha512-kRY75piOQsyoH75E/RP6lr7uVGFCjeeCCCJx7Z2D1Vc6+I1yFQjLCvE+6agXGwqDoWi6vbETP1g7gmp/L1mNLg==}
     peerDependencies:
-      solid-js: ^1.5.3
+      solid-js: ^1.8.4
     dependencies:
       solid-js: 1.8.6
     dev: false
@@ -837,12 +837,12 @@ packages:
       '@tma.js/utils': 0.5.6
     dev: false
 
-  /@tma.js/solid-router-integration@0.0.5(@solidjs/router@0.8.4):
+  /@tma.js/solid-router-integration@0.0.5(@solidjs/router@0.9.1):
     resolution: {integrity: sha512-SDM9qt4exxD0M0+4aj/5qGN0lUYKkBhKk3SrkWF8H1XZKrcZvXhQol8zHmFx4JJGAFx4WvWfbBwsdEa50+QPIw==}
     peerDependencies:
       '@solidjs/router': ^0.x
     dependencies:
-      '@solidjs/router': 0.8.4(solid-js@1.8.6)
+      '@solidjs/router': 0.9.1(solid-js@1.8.6)
       '@tma.js/navigation': 1.0.0
     dev: false
 

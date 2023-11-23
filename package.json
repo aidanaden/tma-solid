@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@solid-primitives/pagination": "^0.2.9",
-    "@solidjs/router": "^0.8.4",
+    "@solidjs/router": "^0.9.1",
     "@tma.js/colors": "^0.0.5",
     "@tma.js/init-data": "^0.2.22",
     "@tma.js/launch-params": "^1.0.1",
