@@ -1,4 +1,3 @@
-import UnoCSS from "unocss/vite";
 import { defineConfig } from "vite";
 import solidPlugin from "vite-plugin-solid";
 
@@ -13,7 +12,6 @@ export default defineConfig({
     For more info see https://github.com/thetarnav/solid-devtools/tree/main/packages/extension#readme
     */
     // devtools(),
-    UnoCSS(),
     solidPlugin(),
   ],
   // Uncomment this line in case, you would like to run Vite dev server using HTTPS and in case,

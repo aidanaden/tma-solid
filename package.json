@@ -23,14 +23,13 @@
     "@biomejs/biome": "1.4.1",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
+    "autoprefixer": "^10.4.16",
     "eslint-plugin-solid": "^0.13.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.5",
     "typescript": "^5.3.2",
     "vite": "^5.0.4",
-    "vite-plugin-solid": "^2.7.2",
-    "@unocss/eslint-config": "^0.58.0",
-    "@unocss/reset": "^0.58.0",
-    "unocss": "^0.58.0",
-    "@unocss/preset-icons": "^0.58.0"
+    "vite-plugin-solid": "^2.7.2"
   },
   "dependencies": {
     "@solid-primitives/pagination": "^0.2.9",
@@ -43,7 +42,6 @@
     "clsx": "^2.0.0",
     "solid-js": "^1.8.7",
     "tailwind-merge": "^2.1.0",
-    "unocss-preset-scrollbar-hide": "^1.0.1",
     "valibot": "^0.21.0"
   }
 }

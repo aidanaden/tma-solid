@@ -1,5 +1,5 @@
 import type { Chat, User } from "@tma.js/sdk";
-import { useInitData, useInitDataRaw } from "@tma.js/sdk-solid";
+import { useInitData, useInitDataRaw, useThemeParams } from "@tma.js/sdk-solid";
 import { Match, Switch, createMemo } from "solid-js";
 
 import { DisplayData, type Line } from "../../components/DisplayData";
@@ -64,19 +64,6 @@ export function InitDataPage() {
         <Match when={whenWithData()}>
           {(match) => {
             const lines = createMemo<Line[]>(() => {
-              // const {
-              //   authDate,
-              //   chat,
-              //   hash,
-              //   canSendAfter,
-              //   queryId,
-              //   receiver,
-              //   user,
-              //   startParam,
-              //   chatType,
-              //   chatInstance,
-              // } = match().typed;
-
               return [
                 ["Raw", match().raw],
                 ["Auth date", match().typed.authDate.toLocaleString()],

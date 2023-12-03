@@ -1,4 +1,5 @@
 import { type RGB, isRGB } from "@tma.js/colors";
+import { useThemeParams } from "@tma.js/sdk-solid";
 import { For, Match, Switch } from "solid-js";
 
 type LineValue = string | undefined | Line[];
@@ -70,7 +71,7 @@ function DataLine(props: DataLineProps) {
 
 export function DisplayData(props: DisplayDataProps) {
   return (
-    <div class="text-tg-text text-base">
+    <div class="text-base">
       <div class="pb-3 text-3xl font-bold">{props.title}</div>
       <For each={props.lines}>
         {([title, value]) => <DataLine title={title} value={value} />}

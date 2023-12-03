@@ -52,7 +52,6 @@ export function Root() {
       // }}
       options={{
         cssVars: true,
-        acceptCustomStyles: true,
       }}
     >
       <DisplayGate>
