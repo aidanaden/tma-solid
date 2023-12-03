@@ -45,7 +45,7 @@
 }
 
 html {
-  @apply font-sf font-medium antialiased bg-tg-bg text-tg-text;
+  @apply font-sf font-medium antialiased;
 }
 
 body {
@@ -62,9 +62,11 @@ pre {
 }
 
 .btn-tg-primary {
-  @apply bg-tg-btn hover:bg-tg-btn text-tg-btn-text;
+  background: var(--tg-theme-button-color);
+  color: var(--tg-theme-button-text-color);
 }
 
 .btn-tg-secondary {
-  @apply bg-tg-secondary-bg hover:bg-tg-secondary-bg text-tg-hint;
+  background: var(--tg-theme-secondary-bg-color);
+  color: var(var(--tg-theme-hint-color));
 }
