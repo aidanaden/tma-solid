@@ -1,6 +1,6 @@
+import { useThemeParams } from "@tma.js/sdk-solid";
 import { Component, ComponentProps, splitProps } from "solid-js";
 import { cn } from "../../utils/cn";
-import { useThemeParams } from "@tma.js/sdk-solid";
 
 export const PageLayout: Component<ComponentProps<"div">> = (props) => {
   const [, rest] = splitProps(props, ["class", "classList", "children"]);
