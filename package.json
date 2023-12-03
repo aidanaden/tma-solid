@@ -9,31 +9,41 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "format": "bunx @biomejs/biome check --apply .",
+    "format-check": "bunx @biomejs/biome check .",
+    "lint": "eslint --fix \"**/*.{ts,tsx}\"",
+    "type-check": "tsc --noEmit",
+    "ci": "bun run lint && bun run format && bun run type-check"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
+    "@biomejs/biome": "1.4.1",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
     "eslint-plugin-solid": "^0.13.0",
-    "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5",
     "typescript": "^5.3.2",
-    "vite": "^4.5.0",
-    "vite-plugin-solid": "^2.7.2"
+    "vite": "^5.0.4",
+    "vite-plugin-solid": "^2.7.2",
+    "@unocss/eslint-config": "^0.58.0",
+    "@unocss/reset": "^0.58.0",
+    "unocss": "^0.58.0",
+    "@unocss/preset-icons": "^0.58.0"
   },
   "dependencies": {
     "@solid-primitives/pagination": "^0.2.9",
     "@solidjs/router": "^0.9.1",
     "@tma.js/colors": "^0.0.5",
-    "@tma.js/init-data": "^0.2.22",
-    "@tma.js/launch-params": "^1.0.1",
-    "@tma.js/navigation": "^1.0.1",
-    "@tma.js/sdk": "^0.13.3",
-    "@tma.js/sdk-solid": "^0.1.20",
-    "@tma.js/solid-router-integration": "^0.0.5",
-    "solid-js": "^1.8.6",
+    "@tma.js/sdk": "^1.0.2",
+    "@tma.js/sdk-solid": "^1.0.2",
+    "@tma.js/solid-router-integration": "^1.0.0",
+    "@types/node": "^20.10.2",
+    "clsx": "^2.0.0",
+    "solid-js": "^1.8.7",
+    "tailwind-merge": "^2.1.0",
+    "unocss-preset-scrollbar-hide": "^1.0.1",
     "valibot": "^0.21.0"
   }
 }

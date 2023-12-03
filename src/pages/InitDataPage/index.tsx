@@ -1,9 +1,9 @@
-import { Match, Switch } from "solid-js";
-import { useSDK } from "@tma.js/sdk-solid";
-import type { Chat, User } from "@tma.js/init-data";
+import type { Chat, User } from "@tma.js/sdk";
+import { useInitData, useInitDataRaw } from "@tma.js/sdk-solid";
+import { Match, Switch, createMemo } from "solid-js";
 
-import { Link } from "../../components/Link";
 import { DisplayData, type Line } from "../../components/DisplayData";
+import { Link } from "../../components/Link";
 import { PageLayout } from "../../components/PageLayout";
 
 function getUserLines(user: User): Line[] {
@@ -11,8 +11,8 @@ function getUserLines(user: User): Line[] {
     id,
     isBot,
     isPremium,
-    languageCode = null,
-    lastName = null,
+    languageCode = undefined,
+    lastName = undefined,
     firstName,
   } = user;
 
@@ -27,7 +27,7 @@ function getUserLines(user: User): Line[] {
 }
 
 function getChatLines(chat: Chat): Line[] {
-  const { id, title, type, username = null, photoUrl = null } = chat;
+  const { id, title, type, username = undefined, photoUrl = undefined } = chat;
 
   return [
     ["ID", id.toString()],
@@ -39,20 +39,21 @@ function getChatLines(chat: Chat): Line[] {
 }
 
 export function InitDataPage() {
-  const { initData, initDataRaw } = useSDK();
-  const whenWithData = () => {
+  // const { initData, initDataRaw } = useSDK();
+  const initData = useInitData();
+  const initDataRaw = useInitDataRaw();
+  const whenWithData = createMemo(() => {
     const typed = initData();
     const raw = initDataRaw();
-
     return typed && raw ? { typed, raw } : false;
-  };
+  });
 
   return (
     <PageLayout>
-      <Link class="pb-3 block" href="/theme-params">
+      <Link class="block pb-3" href="/theme-params">
         To theme parameters
       </Link>
-      <Link class="pb-3 block" href="/pokemons">
+      <Link class="block pb-3" href="/pokemons">
         To pokemons
       </Link>
       <Switch
@@ -62,38 +63,54 @@ export function InitDataPage() {
       >
         <Match when={whenWithData()}>
           {(match) => {
-            const lines = (): Line[] => {
-              const {
-                authDate,
-                chat,
-                hash,
-                canSendAfter,
-                queryId,
-                receiver,
-                user,
-                startParam,
-                chatType,
-                chatInstance,
-              } = match().typed;
+            const lines = createMemo<Line[]>(() => {
+              // const {
+              //   authDate,
+              //   chat,
+              //   hash,
+              //   canSendAfter,
+              //   queryId,
+              //   receiver,
+              //   user,
+              //   startParam,
+              //   chatType,
+              //   chatInstance,
+              // } = match().typed;
 
               return [
                 ["Raw", match().raw],
-                ["Auth date", authDate.toLocaleString()],
-                ["Hash", hash],
+                ["Auth date", match().typed.authDate.toLocaleString()],
+                ["Hash", match().typed.hash],
                 [
                   "Can send after",
-                  canSendAfter ? canSendAfter.toString() : null,
+                  match().typed.canSendAfter
+                    ? match().typed.canSendAfter!.toString()
+                    : undefined,
                 ],
-                ["Query id", queryId],
-                ["Start param", startParam],
-                ["Chat type", chatType],
-                ["Chat instance", chatInstance],
-                ["Receiver", receiver ? getUserLines(receiver) : null],
-                ["Chat", chat ? getChatLines(chat) : null],
-                ["User", user ? getUserLines(user) : null],
+                ["Query id", match().typed.queryId],
+                ["Start param", match().typed.startParam],
+                ["Chat type", match().typed.chatType],
+                ["Chat instance", match().typed.chatInstance],
+                [
+                  "Receiver",
+                  match().typed.receiver
+                    ? getUserLines(match().typed.receiver!)
+                    : undefined,
+                ],
+                [
+                  "Chat",
+                  match().typed.chat
+                    ? getChatLines(match().typed.chat!)
+                    : undefined,
+                ],
+                [
+                  "User",
+                  match().typed.user
+                    ? getUserLines(match().typed.user!)
+                    : undefined,
+                ],
               ];
-            };
-
+            });
             return <DisplayData title="Init data" lines={lines()} />;
           }}
         </Match>

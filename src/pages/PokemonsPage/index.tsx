@@ -1,26 +1,26 @@
 import { useNavigate } from "@solidjs/router";
 import {
-  createResource,
-  Suspense,
   For,
   Show,
-  createSignal,
-  createMemo,
+  Suspense,
   createEffect,
+  createMemo,
+  createResource,
+  createSignal,
 } from "solid-js";
 import { createStore } from "solid-js/store";
 import {
-  object,
-  string,
-  number,
-  nullable,
-  array,
-  parse,
   type Input,
+  array,
+  nullable,
+  number,
+  object,
+  parse,
+  string,
 } from "valibot";
 
-import { PageLayout } from "../../components/PageLayout";
 import { Link } from "../../components/Link";
+import { PageLayout } from "../../components/PageLayout";
 
 const ListPokemonSchema = object({
   name: string(),
@@ -74,7 +74,7 @@ export function PokemonsPage() {
       const res = await fetch(
         `https://pokeapi.co/api/v2/pokemon/?limit=${PER_PAGE}&offset=${
           page * PER_PAGE
-        }`
+        }`,
       );
       const jsoned = await res.json();
       const parsed = parse(PokemonsResultSchema, jsoned).results;
@@ -85,13 +85,13 @@ export function PokemonsPage() {
       });
       const results = await Promise.all(promises);
       return results;
-    }
+    },
   );
 
   return (
     <PageLayout>
       <Link
-        class="pb-3 block"
+        class="block pb-3"
         href="/init-data"
         onClick={(e) => {
           e.preventDefault();
@@ -107,7 +107,7 @@ export function PokemonsPage() {
               {(poke) => (
                 <div>
                   <img
-                    class="h-12 aspect-square"
+                    class="aspect-square h-12"
                     src={poke.sprites.front_default ?? undefined}
                   />
                   <div>{poke.name}</div>

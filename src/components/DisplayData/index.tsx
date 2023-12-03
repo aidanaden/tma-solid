@@ -1,7 +1,7 @@
+import { type RGB, isRGB } from "@tma.js/colors";
 import { For, Match, Switch } from "solid-js";
-import { isRGB, type RGB } from "@tma.js/colors";
 
-type LineValue = string | null | Line[];
+type LineValue = string | undefined | Line[];
 export type Line = [title: string, value: LineValue];
 
 interface DisplayDataProps {
@@ -25,7 +25,7 @@ function DisplayRGB(props: DisplayRGBProps) {
         border-radius: 50%;
       } */}
       <div
-        class="w-[18px] aspect-square border border-[#555] rounded-full mr-1"
+        class="mr-1 aspect-square w-[18px] border border-[#555] rounded-full"
         style={{ "background-color": props.color }}
       />
       {props.color}
@@ -41,7 +41,7 @@ function DataLine(props: DataLineProps) {
           {(lines) => <DisplayData title={props.title} lines={lines()} />}
         </Match>
         <Match when={true}>
-          <div class="font-bold pb-1 text-lg">{props.title}</div>
+          <div class="pb-1 text-lg font-bold">{props.title}</div>
           <div class="whitespace-normal break-words">
             <code>
               <Switch fallback={<i>No data</i>}>
@@ -70,8 +70,8 @@ function DataLine(props: DataLineProps) {
 
 export function DisplayData(props: DisplayDataProps) {
   return (
-    <div class="text-base text-tg-text">
-      <div class="font-bold text-3xl pb-3">{props.title}</div>
+    <div class="text-tg-text text-base">
+      <div class="pb-3 text-3xl font-bold">{props.title}</div>
       <For each={props.lines}>
         {([title, value]) => <DataLine title={title} value={value} />}
       </For>

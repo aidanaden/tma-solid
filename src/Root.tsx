@@ -1,5 +1,5 @@
-import { createMemo, Switch, Match, type ParentProps } from "solid-js";
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
+import { Match, type ParentProps, Switch, createMemo } from "solid-js";
 
 import { App } from "./App";
 
@@ -21,16 +21,13 @@ function DisplayGate(props: ParentProps) {
   return (
     <Switch fallback={props.children}>
       <Match when={errorMessage()}>
-        <div
-          class="max-w-7xl px-3 mx-auto flex flex-col gap-2.5
-          items-center justify-center h-screen"
-        >
+        <div class="mx-auto h-screen max-w-7xl flex flex-col items-center justify-center gap-2.5 px-3">
           <p>
             SDK was unable to initialize. Probably, current application is being
             used not in Telegram Web Apps environment.
           </p>
           <blockquote>
-            <p class="py-3 px-4">{errorMessage()}</p>
+            <p class="px-4 py-3">{errorMessage()}</p>
           </blockquote>
         </div>
       </Match>
@@ -47,11 +44,15 @@ function DisplayGate(props: ParentProps) {
 export function Root() {
   return (
     <SDKProvider
-      initOptions={{
-        debug: true,
+      // initOptions={{
+      //   debug: true,
+      //   cssVars: true,
+      //   timeout: 1000,
+      //   checkCompat: true,
+      // }}
+      options={{
         cssVars: true,
-        timeout: 1000,
-        checkCompat: true,
+        acceptCustomStyles: true,
       }}
     >
       <DisplayGate>

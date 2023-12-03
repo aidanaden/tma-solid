@@ -1,10 +1,10 @@
-import { Routes, Route, Navigate, Router } from "@solidjs/router";
+import { Navigate, Route, Router, Routes } from "@solidjs/router";
 import { createIntegration } from "@tma.js/solid-router-integration";
 
-import { InitDataPage } from "./pages/InitDataPage";
-import { ThemeParamsPage } from "./pages/ThemeParamsPage";
 import { createNavigator } from "./createNavigator";
+import { InitDataPage } from "./pages/InitDataPage";
 import { PokemonsPage } from "./pages/PokemonsPage";
+import { ThemeParamsPage } from "./pages/ThemeParamsPage";
 
 export function App() {
   // We should create navigator to pass it to integration creation.
@@ -12,10 +12,10 @@ export function App() {
 
   // Then, to allow this navigator update current browser history, we should attach it. Otherwise,
   // it will work in memory mode.
-  void navigator.attach();
+  void navigator()?.attach();
 
   return (
-    <Router source={createIntegration(() => navigator)}>
+    <Router source={createIntegration(navigator)}>
       <Routes>
         <Route path={"/init-data"} component={InitDataPage} />
         <Route path={"/theme-params"} component={ThemeParamsPage} />

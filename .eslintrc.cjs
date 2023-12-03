@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['plugin:solid/typescript'],
-  plugins: ['solid'],
-  parser: '@typescript-eslint/parser',
+  extends: ["@unocss"],
+  plugins: ["solid", "@typescript-eslint"],
+  parser: "@typescript-eslint/parser",
 };

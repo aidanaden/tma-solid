@@ -1,39 +1,30 @@
-import { useSDK } from "@tma.js/sdk-solid";
 import { useNavigate } from "@solidjs/router";
+import { useThemeParams } from "@tma.js/sdk-solid";
+import { createMemo } from "solid-js";
 
-import { Link } from "../../components/Link";
 import { DisplayData, Line } from "../../components/DisplayData";
+import { Link } from "../../components/Link";
 import { PageLayout } from "../../components/PageLayout";
 
 export function ThemeParamsPage() {
-  const { themeParams } = useSDK();
+  const themeParams = useThemeParams();
   const navigate = useNavigate();
-  const lines = (): Line[] => {
-    const {
-      backgroundColor,
-      buttonColor,
-      linkColor,
-      secondaryBackgroundColor,
-      textColor,
-      buttonTextColor,
-      hintColor,
-    } = themeParams();
-
+  const lines = createMemo<Line[]>(() => {
     return [
-      ["Background color", backgroundColor],
-      ["Button background color", buttonColor],
-      ["Button text color", buttonTextColor],
-      ["Link color", linkColor],
-      ["Secondary background color", secondaryBackgroundColor],
-      ["Text color", textColor],
-      ["Hint color", hintColor],
+      ["Background color", themeParams().backgroundColor],
+      ["Button background color", themeParams().buttonColor],
+      ["Button text color", themeParams().buttonTextColor],
+      ["Link color", themeParams().linkColor],
+      ["Secondary background color", themeParams().secondaryBackgroundColor],
+      ["Text color", themeParams().textColor],
+      ["Hint color", themeParams().hintColor],
     ];
-  };
+  });
 
   return (
     <PageLayout>
       <Link
-        class="pb-3 block"
+        class="block pb-3"
         href="/init-data"
         onClick={(e) => {
           e.preventDefault();

@@ -3,7 +3,7 @@
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "Bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "preserve",
@@ -11,11 +11,8 @@
     "types": ["vite/client"],
     "noEmit": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "composite": true,
+    "skipLibCheck": true,
   },
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
 }

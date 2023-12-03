@@ -1,12 +1,27 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
+import {
+  defineConfig,
+  presetIcons,
+  presetUno,
+  transformerDirectives,
+} from "unocss";
+import { presetScrollbarHide } from "unocss-preset-scrollbar-hide";
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+export default defineConfig({
+  transformers: [transformerDirectives()],
+  presets: [
+    presetUno(),
+    presetIcons({
+      extraProperties: {
+        display: "inline-block",
+        "vertical-align": "middle",
+      },
+    }),
+    presetScrollbarHide(),
+  ],
   theme: {
     extend: {
       fontFamily: {
-        sf: ["SF Pro Rounded", ...defaultTheme.fontFamily.sans],
+        sf: ["SF Pro Rounded"],
       },
 
       colors: {
@@ -22,5 +37,4 @@ module.exports = {
       },
     },
   },
-  plugins: [],
-};
+});
