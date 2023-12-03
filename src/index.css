@@ -48,6 +48,11 @@ html {
   @apply font-sf font-medium antialiased bg-tg-bg text-tg-text;
 }
 
+body {
+  background: var(--tg-theme-background-color, white);
+  color: var(--tg-theme-text-color, black);
+}
+
 blockquote p {
   @apply p-4 bg-[#eee] rounded-md;
 }
