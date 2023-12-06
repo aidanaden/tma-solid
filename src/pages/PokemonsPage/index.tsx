@@ -169,7 +169,7 @@ export function PokemonsPage() {
                                 info.type.name === "psychic",
                               "bg-gray-500/10 text-gray-500":
                                 info.type.name === "rock",
-                              "bg-black/10": info.type.name === "dark",
+                              "bg-black": info.type.name === "dark",
                               "bg-green-500/10 text-green-500":
                                 info.type.name === "bug",
                               "bg-yellow-500/10 text-yellow-500":
