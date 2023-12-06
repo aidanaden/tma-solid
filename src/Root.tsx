@@ -1,7 +1,9 @@
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+import { persistQueryClient } from "@tanstack/solid-query-persist-client";
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
 import { Match, Switch, createMemo, type ParentProps } from "solid-js";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 import { App } from "./App";
 
 /**
@@ -40,6 +42,13 @@ function DisplayGate(props: ParentProps) {
 }
 
 const queryClient = new QueryClient();
+const localStoragePersister = createSyncStoragePersister({
+  storage: window.localStorage,
+});
+persistQueryClient({
+  queryClient,
+  persister: localStoragePersister,
+});
 
 /**
  * Root component of the project.
