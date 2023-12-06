@@ -1,6 +1,7 @@
 import { SDKProvider, useSDKContext } from "@tma.js/sdk-solid";
-import { Match, type ParentProps, Switch, createMemo } from "solid-js";
+import { Match, Switch, createMemo, type ParentProps } from "solid-js";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 import { App } from "./App";
 
 /**
@@ -38,24 +39,22 @@ function DisplayGate(props: ParentProps) {
   );
 }
 
+const queryClient = new QueryClient();
+
 /**
  * Root component of the project.
  */
 export function Root() {
   return (
     <SDKProvider
-      // initOptions={{
-      //   debug: true,
-      //   cssVars: true,
-      //   timeout: 1000,
-      //   checkCompat: true,
-      // }}
       options={{
         cssVars: true,
       }}
     >
       <DisplayGate>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </DisplayGate>
     </SDKProvider>
   );

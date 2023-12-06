@@ -1,5 +1,5 @@
 import type { Chat, User } from "@tma.js/sdk";
-import { useInitData, useInitDataRaw, useThemeParams } from "@tma.js/sdk-solid";
+import { useInitData, useInitDataRaw } from "@tma.js/sdk-solid";
 import { Match, Switch, createMemo } from "solid-js";
 
 import { DisplayData, type Line } from "../../components/DisplayData";
@@ -50,9 +50,6 @@ export function InitDataPage() {
 
   return (
     <PageLayout>
-      <Link class="block pb-3" href="/theme-params">
-        To theme parameters
-      </Link>
       <Link class="block pb-3" href="/pokemons">
         To pokemons
       </Link>
